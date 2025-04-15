@@ -28,10 +28,17 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium pytest  # <-- added pytest here
+          pip install selenium pytest
 
       - name: Run run_test.py
-        run: python run_test.py
+        run: |
+          export DISPLAY=:99
+          python run_test.py
+
+      - name: Run Pytest
+        run: |
+          export DISPLAY=:99
+          pytest
 
       - name: Success message
         run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
