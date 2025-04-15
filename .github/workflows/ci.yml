@@ -5,6 +5,7 @@ on: [push]
 jobs:
   ega:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,11 +34,13 @@ jobs:
       - name: Run run_test.py
         run: |
           export DISPLAY=:99
+          export PYTHONPATH="${{ github.workspace }}"
           python run_test.py
 
       - name: Run Pytest
         run: |
           export DISPLAY=:99
+          export PYTHONPATH="${{ github.workspace }}"
           pytest
 
       - name: Success message
